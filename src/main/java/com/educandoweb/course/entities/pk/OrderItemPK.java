@@ -3,6 +3,7 @@ package com.educandoweb.course.entities.pk;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -10,14 +11,14 @@ import com.educandoweb.course.entities.Order;
 import com.educandoweb.course.entities.Product;
 
 @Embeddable
-public class OrdemItemPK implements Serializable{
+public class OrderItemPK implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
@@ -50,7 +51,7 @@ public class OrdemItemPK implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrdemItemPK other = (OrdemItemPK) obj;
+		OrderItemPK other = (OrderItemPK) obj;
 		if (order == null) {
 			if (other.order != null)
 				return false;
